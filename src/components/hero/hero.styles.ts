@@ -1,4 +1,3 @@
-import type { Transition } from "motion/react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 // STYLES ----------------------------------------------------------------------------------------------------------------------------------
@@ -12,17 +11,12 @@ const heroStyles = tv({
     main: "flex flex-col items-center gap-8 lg:items-start",
     title: "flex flex-col items-center font-black text-[42px] leading-none sm:text-7xl lg:items-start 2xl:text-8xl",
     titleRow: "flex items-center gap-1 whitespace-nowrap text-primary",
-    titleRowContent: "w-0 overflow-hidden leading-tight",
-    titleRowCursor: "h-10 w-1 rounded-sm bg-primary opacity-0 sm:h-16",
+    titleRowContent: `max-w-full overflow-hidden leading-tight transition-all delay-1000 duration-[2s] ease-linear
+    starting:max-w-0`,
+    titleRowCursor: "h-10 w-1 animate-blink rounded-sm bg-primary sm:h-16",
   },
 });
 export const HERO = heroStyles();
-
-// TRANSITIONS -----------------------------------------------------------------------------------------------------------------------------
-export const HERO_T = {
-  content: { duration: 2, ease: "linear", delay: 1 },
-  cursor: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" },
-} satisfies Record<string, Transition>;
 
 // TYPES -----------------------------------------------------------------------------------------------------------------------------------
 export type HeroClass = Partial<(typeof heroStyles)["slots"]>;

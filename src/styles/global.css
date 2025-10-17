@@ -91,3 +91,15 @@
     @apply bg-background text-foreground font-base;
   }
 }
+
+@theme {
+  --animate-blink: blink 0.8s infinite alternate;
+  @keyframes blink {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
