@@ -4,7 +4,8 @@ import type { HTMLAttributes } from "astro/types";
 import type { Images } from "@/data/images";
 import ButtonAnimated from "../button-animated.astro";
 import { HERO, type HeroStyles } from "./hero.styles";
-import { HeroTitleEffect } from "./hero.title-effect";
+
+// import { HeroTitleEffect } from "./hero.title-effect";
 
 // PROPS -----------------------------------------------------------------------------------------------------------------------------------
 type Props = Omit<HTMLAttributes<"section">, "class" | "title"> &
@@ -16,7 +17,7 @@ const { button, class: C = {}, image, title } = Astro.props;
   <main class={HERO.main({ className: C.main })}>
     <h1 class={HERO.title({ className: C.title })}>
       <span>{title[0]}</span>
-      <HeroTitleEffect client:load text={title[1]} />
+      <!-- <HeroTitleEffect client:load text={title[1]} /> -->
     </h1>
     <div class={HERO.content({ className: C.content })}><slot /></div>
     {button && <ButtonAnimated>{button}</ButtonAnimated>}

@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { SECTION, type SectionClass, type SectionVariants } from "./section.styles";
-import { SectionTitleEffect } from "./section.title-effect";
+
+// import { SectionTitleEffect } from "./section.title-effect";
 
 const { class: C = {}, intent, reverse, title, ...props } = Astro.props;
 
@@ -17,5 +18,5 @@ export type { Props as SectionTitleProps };
 ---
 <h2 {...props} class={SECTION.title({ intent, reverse, className: C.title })}>
 	<span>{title[0]}</span>
-  <SectionTitleEffect client:load intent={intent} reverse={reverse} text={title[1]!} className={C} />
+  <!-- <SectionTitleEffect client:load intent={intent} reverse={reverse} text={title[1]!} className={C} /> -->
 </h2>
