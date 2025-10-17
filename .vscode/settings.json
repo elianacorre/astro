@@ -51,5 +51,8 @@
     "titleBar.inactiveBackground": "#d15d9999",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#d15d99"
+  "peacock.color": "#d15d99",
+  "[astro]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }

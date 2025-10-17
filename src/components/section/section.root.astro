@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { SECTION, type SectionClass, type SectionVariants } from "./section.styles";
+
+const { class: C = {}, intent = "default", reverse, ...props } = Astro.props;
+
+type Props = Omit<HTMLAttributes<"section">, "class"> & SectionVariants & { class?: Pick<SectionClass, "base" | "container"> };
+
+export type { Props as SectionProps };
+---
+
+<section {...props} class={SECTION.base({ intent, reverse, className: C.base })}>
+	<div class={SECTION.container({ intent, reverse,className: C.container })}><slot /></div>
+</section>

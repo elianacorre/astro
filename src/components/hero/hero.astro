@@ -1,0 +1,27 @@
+---
+import { Image } from "@unpic/astro";
+import type { HTMLAttributes } from "astro/types";
+import type { Images } from "@/data/images";
+import ButtonAnimated from "../button-animated.astro";
+import { HERO, type HeroStyles } from "./hero.styles";
+import { HeroTitleEffect } from "./hero.title-effect";
+
+// PROPS -----------------------------------------------------------------------------------------------------------------------------------
+type Props = Omit<HTMLAttributes<"section">, "class" | "title"> &
+  HeroStyles & { button?: string; image: Images["Entity"]; title: string[] };
+const { button, class: C = {}, image, title } = Astro.props;
+---
+
+<section class={HERO.base({ className: C.base })}>
+  <main class={HERO.main({ className: C.main })}>
+    <h1 class={HERO.title({ className: C.title })}>
+      <span>{title[0]}</span>
+      <HeroTitleEffect client:load text={title[1]} />
+    </h1>
+    <div class={HERO.content({ className: C.content })}><slot /></div>
+    {button && <ButtonAnimated>{button}</ButtonAnimated>}
+  </main>
+  <aside class={HERO.aside({ className: C.aside })}>
+    <Image {...image} aspectRatio={1} priority class={HERO.img()} sizes="(min-width: 1536px) 724px, (min-width: 1280px) 612px, (min-width: 1024px) 406px, (min-width: 768px) 670px, (min-width: 640px) 576px, 100vw" />
+  </aside>
+</section>

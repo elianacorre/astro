@@ -1,30 +1,48 @@
 ---
-// import { imageFrom } from "@ec/domain/utils/images";
-// import { QUOTE } from "@ec/ui/styles/app/index";
-// import GridBackground from "@/components/grid-background.astro";
-// import Hero from "@/components/hero.astro";
-// import SectionContent from "@/components/section/section.content.astro";
-// import SectionImage from "@/components/section/section.image.astro";
-// import SectionMain from "@/components/section/section.main.astro";
-// import Section from "@/components/section/section.root.astro";
-// import SectionTitle from "@/components/section/section.title.astro";
+import { tv } from "tailwind-variants";
+import GridBackground from "@/components/grid-background.astro";
+import Hero from "@/components/hero/hero.astro";
+import SectionContent from "@/components/section/section.content.astro";
+import SectionImage from "@/components/section/section.image.astro";
+import SectionMain from "@/components/section/section.main.astro";
+import Section from "@/components/section/section.root.astro";
+import SectionTitle from "@/components/section/section.title.astro";
+import { readIndexPage } from "@/data/pages";
 // import WorksGrid from "@/components/works-grid.astro";
 // import { IndexForm } from "./_index.form";
 import Layout from "./_layout.astro";
 
-// const { contact, hero, quote, works } = await Astro.locals.convex.fetchQuery(
-//   api.pages.readIndex
-// );
+// STYLES ----------------------------------------------------------------------------------------------------------------------------------
+export const QUOTE = tv({
+  slots: {
+    author: `text-lg font-black text-neutral-500
+    sm:text-xl
+    md:text-2xl
+    2xl:text-3xl`,
+    base: `relative px-4 py-8
+    sm:px-8
+    md:py-20`,
+    content: `relative flex flex-col items-center gap-4
+    sm:gap-8`,
+    sentence: `font-heading font-bold text-3xl text-center
+    sm:text-5xl
+    md:text-6xl
+    2xl:text-7xl`,
+  },
+})();
+
+// DATA ------------------------------------------------------------------------------------------------------------------------------------
+const { contact, hero, quote, works } = await readIndexPage();
 ---
 
 <Layout>
-  <!-- <Hero {...hero} image={imageFrom(hero.image)} class={{ aside: "flex" }}>
+  <Hero {...hero} image={hero.image} class={{ aside: "flex" }}>
     {hero.content}
   </Hero>
   <Section class={{ base: "lg:-mt-20" }} intent="secondary">
     <SectionMain>
       <SectionTitle intent="secondary" title={works.title} />
-      <WorksGrid works={works.items} />
+      <!-- <WorksGrid works={works.items} /> -->
     </SectionMain>
   </Section>
   <section class={QUOTE.base()}>
@@ -35,11 +53,11 @@ import Layout from "./_layout.astro";
     </div>
   </section>
   <Section id="contact" intent="primary">
-    <SectionImage image={imageFrom(contact.image)} reverse />
+    <SectionImage image={contact.image} reverse />
     <SectionMain>
       <SectionTitle title={contact.title} />
       <SectionContent>{contact.content}</SectionContent>
-      <IndexForm client:visible />
+      <!-- <IndexForm client:visible /> -->
     </SectionMain>
-  </Section> -->
+  </Section>
 </Layout>

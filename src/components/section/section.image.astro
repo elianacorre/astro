@@ -1,0 +1,19 @@
+---
+import { Image } from "@unpic/astro";
+import type { HTMLAttributes } from "astro/types";
+import type { Images } from "@/data/images";
+import { SECTION, type SectionClass, type SectionVariants } from "./section.styles";
+
+const { class: C = {}, image, intent, reverse = false } = Astro.props;
+
+type Props = Omit<HTMLAttributes<"figure">, "class"> &
+  SectionVariants & {
+    class?: Pick<SectionClass, "figure" | "image">;
+    image: Images["Entity"];
+  };
+export type { Props as SectionImageProps };
+---
+
+<figure class={SECTION.figure({ intent, reverse, className: C.figure })}>
+	<Image {...image} class={SECTION.image({ intent, reverse, className: C.image })} aspectRatio={1} sizes="(min-width: 1536px) 724px, (min-width: 1280px) 612px, (min-width: 1024px) 406px, (min-width: 768px) 670px, (min-width: 640px) 576px, 100vw" />
+</figure>

@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { SECTION, type SectionVariants } from "./section.styles";
+
+const { class: className, intent, reverse, ...props } = Astro.props;
+
+type Props = HTMLAttributes<"main"> & SectionVariants;
+export type { Props as SectionMainProps };
+---
+
+<main {...props} class={SECTION.main({ intent, reverse, className })}>
+	<slot />
+</main>
