@@ -1,0 +1,54 @@
+---
+import GridBackground from "@/components/grid-background.astro";
+import "@ec/ui/globals.css";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+
+// import { imageFrom } from "@ec/domain/utils/images";
+// import { Image } from "@unpic/astro";
+// import { Icon } from "astro-icon/components";
+// import { Header, HeaderLogo } from "./_layout.header";
+
+// const { logoImg } = await Astro.locals.convex.fetchQuery(api.layouts.readPublic);
+
+const navs = [
+  { id: "qui-suis-je", text: "Qui suis-je?", href: "/qui-suis-je" },
+  { id: "oeuvres", text: "Œuvres", href: "/oeuvres/ode-a-la-beaute" },
+  { id: "contact", text: "Contact", href: "/#contact" },
+];
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>@ec/astro</title>
+    <Font cssVariable="--font-base" preload />
+    <Font cssVariable="--font-heading" preload />
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-screen flex-col overflow-x-hidden antialiased">
+    <GridBackground />
+    <!-- <Header client:load {navs}>
+      <a href="/">
+        <HeaderLogo client:load>
+          <Image {...imageFrom(logoImg)} background="transparent" sizes="(min-width: 768px) 160px, 80px" />
+        </HeaderLogo>
+      </a>
+      <div slot="icons">
+      <Icon  name="simple-icons:instagram" />
+       <Icon name="simple-icons:youtube" /></div>
+    </Header> -->
+    <main class="relative mt-20 flex-1 sm:mt-28 md:mt-40">
+      <slot />
+    </main>
+    <section
+      class="relative flex justify-between bg-neutral-700 p-4 text-white"
+    >
+      <span>© 2025 Eliana Corré</span>
+      <a href="#">Mentions légales</a>
+    </section>
+  </body>
+</html>
