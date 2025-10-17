@@ -11,7 +11,7 @@ const heroStyles = tv({
     main: "flex flex-col items-center gap-8 lg:items-start",
     title: "flex flex-col items-center font-black text-[42px] leading-none sm:text-7xl lg:items-start 2xl:text-8xl",
     titleRow: "flex items-center gap-1 whitespace-nowrap text-primary",
-    titleRowContent: `max-w-full overflow-hidden leading-tight transition-all delay-1000 duration-[2s] ease-linear
+    titleRowContent: `max-w-full overflow-hidden leading-tight transition-all delay-[10s] duration-[2s] ease-linear
     starting:max-w-0`,
     titleRowCursor: "h-10 w-1 animate-blink rounded-sm bg-primary sm:h-16",
   },
