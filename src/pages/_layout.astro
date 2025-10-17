@@ -1,7 +1,7 @@
 ---
 import GridBackground from "@/components/grid-background.astro";
 import "@/styles/global.css";
-import { Font } from "astro:assets";
+// import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 // import { imageFrom } from "@ec/domain/utils/images";
@@ -25,8 +25,8 @@ const navs = [
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>@ec/astro</title>
-    <Font cssVariable="--font-base" preload />
-    <Font cssVariable="--font-heading" preload />
+    <!-- <Font cssVariable="--font-base" preload /> -->
+    <!-- <Font cssVariable="--font-heading" preload /> -->
     <ClientRouter />
   </head>
   <body class="flex min-h-screen flex-col overflow-x-hidden antialiased">
