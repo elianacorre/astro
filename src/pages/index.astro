@@ -7,8 +7,8 @@ import SectionImage from "@/components/section/section.image.astro";
 import SectionMain from "@/components/section/section.main.astro";
 import Section from "@/components/section/section.root.astro";
 import SectionTitle from "@/components/section/section.title.astro";
+import WorksGrid from "@/components/works-grid.astro";
 import { readIndexPage } from "@/data/pages";
-// import WorksGrid from "@/components/works-grid.astro";
 // import { IndexForm } from "./_index.form";
 import Layout from "./_layout.astro";
 
@@ -42,7 +42,7 @@ const { contact, hero, quote, works } = await readIndexPage();
   <Section class={{ base: "lg:-mt-20" }} intent="secondary">
     <SectionMain>
       <SectionTitle intent="secondary" title={works.title} />
-      <!-- <WorksGrid works={works.items} /> -->
+      <WorksGrid works={works.items} />
     </SectionMain>
   </Section>
   <section class={QUOTE.base()}>

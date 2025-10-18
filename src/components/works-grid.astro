@@ -1,0 +1,62 @@
+---
+import { Image } from "@unpic/astro";
+import { ClipboardIcon, PaletteIcon } from "lucide-react";
+// import Zoom from "react-medium-image-zoom";
+// import "react-medium-image-zoom/dist/styles.css";
+import { tv, type VariantProps } from "tailwind-variants";
+import type { Works } from "@/data/works";
+
+// STYLES ----------------------------------------------------------------------------------------------------------------------------------
+const worksGridStyles = tv({
+  slots: {
+    base: `group/list grid w-full grid-cols-1 gap-8
+    sm:grid-cols-2
+    lg:grid-cols-3`,
+    img: "absolute size-full object-cover",
+    infos: `absolute inset-0 flex flex-col justify-between bg-black/50 text-white p-5 transition-opacity duration-300 opacity-0 pointer-events-none
+    group-hover/item:opacity-100`,
+    item: `flex-1 transition duration-300 group/item relative inset-shadow-2xs aspect-square w-full overflow-hidden rounded-3xl bg-neutral-200 shadow-lg
+    hover:scale-none hover:blur-none 
+    group-hover/list:scale-[0.9] group-hover/list:blur-sm`,
+  },
+});
+const WORKS_GRID = worksGridStyles();
+
+// PROPS -----------------------------------------------------------------------------------------------------------------------------------
+const { className: C = {}, works } = Astro.props;
+
+// TYPES -----------------------------------------------------------------------------------------------------------------------------------
+type Props = WorksGridStyles & { works: Works["Entity"][] };
+type WorksGridClass = Partial<(typeof worksGridStyles)["slots"]>;
+type WorksGridVariants = VariantProps<typeof worksGridStyles>;
+type WorksGridStyles = WorksGridVariants & { class?: WorksGridClass; className?: WorksGridClass };
+---
+  
+<ul class={WORKS_GRID.base({ className: C.base })}>
+  {works.map((work) => (
+    <li class={WORKS_GRID.item({ className: C.item })}>
+      {/* <Zoom client:load zoomImg={{ ...work.image, sizes: "100vw" }}> */}
+        <Image
+          {...work.image}
+          class={WORKS_GRID.img({ className: C.img })}
+          sizes="(min-width: 1536px) 470px, (min-width: 1280px) 382px, (min-width: 1024px) 300px, (min-width: 768px) 704px, (min-width: 640px) 576px, 100vw"
+        />
+      {/* </Zoom> */}
+      <div class={WORKS_GRID.infos({ className: C.infos })}>
+        <h3 class="text-center font-bold font-heading text-4xl">{work.title}</h3>
+        <ul class="text-base">
+          <li class="flex items-center gap-2">
+            <PaletteIcon className="size-4" />
+            {work.media.join(", ")}
+          </li>
+          <li class="flex items-center gap-2">
+            <ClipboardIcon className="size-4" />
+            {work.material}
+          </li>
+        </ul>
+      </div>
+    </li>
+  ))}
+</ul>
+
+

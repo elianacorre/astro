@@ -4,6 +4,13 @@
   "formatter": {
     "lineWidth": 140
   },
+  "linter": {
+    "rules": {
+      "style": {
+        "useBlockStatements": "off"
+      }
+    }
+  },
   "overrides": [
     {
       "includes": ["**/*.svelte", "**/*.astro", "**/*.vue"],
